@@ -22,3 +22,13 @@ button {
   align-items: center;
   margin: auto
 }
+
+.mods, .versions{
+  position: relative;
+}
+
+
+.mods ul,
+.versions ul{
+  position absolute;
+}
