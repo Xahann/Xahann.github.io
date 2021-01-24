@@ -29,6 +29,6 @@ button {
 
 .mods ul,
 .versions ul{
-  position absolute;
+  position: absolute;
   background: white;
 }
