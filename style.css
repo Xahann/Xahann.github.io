@@ -53,4 +53,10 @@ button {
   background: none;
   boarder: none;
   color: white;
+  text-decoration: none;
+  font-size: 18px;
+  curser: pointer;
+}
+.dropdown button:hover{
+  color: rgb(193, 194, 199);
 }
