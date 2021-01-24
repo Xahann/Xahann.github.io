@@ -61,9 +61,11 @@ button {
 .home:hover{
   color: rgb(193, 194, 199);
 }
-.mods li, .versions li{
+.mods li, 
+.versions li{
   width: 100%;
   hight: 100%;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
