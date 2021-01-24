@@ -6,7 +6,7 @@
 
 body {
   hight: 100vh;
-  background-color: rgb(25, 41, 88);
+  background-color: rgb(147, 157, 191);
   font-family: "Poppins", sans-serif;
 }
 a, 
@@ -22,14 +22,14 @@ button {
   margin: auto
 }
 
-.Mods, 
-.Dangerzone{
+.mods, 
+.versions{
   position: relative;
 }
 
 
-.Mods ul,
-.Dangerzone ul{
+.mods ul,
+.versions ul{
   position: absolute;
   background: white;
   margin-top: 10px;
