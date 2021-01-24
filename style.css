@@ -48,7 +48,8 @@ button {
   
 }
 
-.dropdown button{
+.dropdown button, 
+.home {
   background: none;
   boarder: none;
   color: white;
