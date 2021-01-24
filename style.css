@@ -16,7 +16,6 @@ button {
 
 .dropdown {
   hight: 10vh;
-  background: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -31,4 +30,5 @@ button {
 .mods ul,
 .versions ul{
   position absolute;
+  background: white;
 }
