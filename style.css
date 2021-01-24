@@ -22,14 +22,14 @@ button {
   margin: auto
 }
 
-.mods, 
-.versions{
+.Mods, 
+.Dangerzone{
   position: relative;
 }
 
 
-.mods ul,
-.versions ul{
+.Mods ul,
+.Dangerzone ul{
   position: absolute;
   background: white;
   margin-top: 10px;
