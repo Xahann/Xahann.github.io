@@ -35,4 +35,8 @@ button {
   margin-top: 10px;
   width: 200px;
   hight: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
 }
