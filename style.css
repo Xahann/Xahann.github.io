@@ -1,0 +1,23 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: boarder-box;
+}
+
+body {
+  hight: 100vh;
+  background-color: rgb(25, 41, 88);
+  font-family: "Poppins", sans-serif;
+}
+a, 
+button {
+  font-family: "Poppins", sans-serif;
+}
+
+.dropdown {
+  hight: 10vh;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
