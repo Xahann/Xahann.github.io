@@ -81,7 +81,7 @@ button {
 
 
 .mods button:focus + ul,
-. versions button:focus + ul{
+.versions button:focus + ul{
   opacity: 1;
   pointer-events: all;
   transform: translateY(0px);
