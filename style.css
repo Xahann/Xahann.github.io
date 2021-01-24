@@ -57,6 +57,18 @@ button {
   font-size: 18px;
   curser: pointer;
 }
-.dropdown button:hover{
+.dropdown button:hover,
+.home:hover{
   color: rgb(193, 194, 199);
+}
+.mods li, .versions li{
+  width: 100%;
+  hight: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.mods li:hover, 
+.versions li:hover{
+    background-color: rgb(90, 148, 242);
 }
