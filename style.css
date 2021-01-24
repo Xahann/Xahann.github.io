@@ -22,7 +22,8 @@ button {
   margin: auto
 }
 
-.mods, .versions{
+.mods, 
+.versions{
   position: relative;
 }
 
@@ -31,4 +32,7 @@ button {
 .versions ul{
   position: absolute;
   background: white;
+  margin-top: 10px;
+  width: 200px;
+  hight: 200px;
 }
