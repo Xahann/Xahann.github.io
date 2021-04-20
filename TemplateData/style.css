@@ -1,0 +1,321 @@
+body { padding: 0; margin: 0 }
+#unity-container { position: absolute }
+#unity-container.unity-desktop { left: 50%; top: 52%; transform: translate(-50%, -50%) }
+#unity-container.unity-mobile { width: 100%; height: 100% }
+#unity-canvas { background-image: url('sp_bg_loadingscreen.png') !important;
+	background-size: cover !important; }
+.unity-mobile #unity-canvas { width: 100%; height: 100% }
+#unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none }
+#unity-logo { background: url(progressLogo.Dark.png) no-repeat;
+    position: absolute;
+    top: -50%;
+    left: -125px;
+    width: 400px;
+    background-size: contain;
+    height: 200px;
+}
+#unity-progress-bar-empty { width: 141px; height: 18px; margin-top: 95px; background: url('progressEmpty.Dark.png') no-repeat center }
+#unity-progress-bar-full { width: 0%; height: 18px; margin-top: 95px; background: url('progressFull.Dark.png') no-repeat center }
+#unity-footer { position: relative }
+.unity-mobile #unity-footer { display: none }
+#unity-webgl-logo { float:left; width: 204px; height: 38px; background: url('webgl-logo.png') no-repeat center }
+#unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px }
+#unity-fullscreen-button { background-image: url('fullscreen.png');
+	width: 38px;
+	height: 38px;
+	float: right;
+	background-size: contain; }
+#unity-mobile-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }
+
+.webgl-content .logo.Dark {
+	background-image: url('progressLogo.Dark.png');
+}
+.webgl-content .progress.Dark .empty {
+	background-image: url('progressEmpty.Dark.png');
+}
+.webgl-content .progress.Dark .full {
+	background-image: url('progressFull.Dark.png');
+}
+
+
+.webgl-content * {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+.webgl-content {
+	position: absolute;
+	top: 52%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+html {
+	height: 100%;
+  width: 100%;
+}
+
+body {
+	margin: 0px;
+	height: 100%;
+  width: 100%;
+}
+
+#background {
+	background: url('ds_banners_game_01.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  
+}
+
+.webgl-content .logo,
+.progress {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.webgl-content .logo {
+	background: url('progressLogo.Light.png') no-repeat center / contain;
+	width: 800px;
+	height: 400px;
+}
+.webgl-content .progress {
+	height: 18px;
+	width: 200px;
+	margin-top: 150px;
+}
+.webgl-content .progress .empty {
+	background: url('progressEmpty.Light.png') no-repeat right / cover;
+	position: absolute;
+	width: 100%;
+	margin-top: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	height: 70%;
+	display: inline-block;
+}
+.webgl-content .progress .full {
+	background: url('progressFull.Light.png') no-repeat left / cover;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+
+
+.webgl-content .footer {
+	margin-top: 2px;
+	height: 38px;
+	line-height: 38px;
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-size: 18px;
+}
+
+.title,
+.fullscreen {
+	height: 100%;
+	display: inline-block;
+	background: transparent center no-repeat;
+}
+
+.webgl-logo, .play-at-home {
+		display: none
+	}
+
+@media screen and (min-height: 725px) {
+.webgl-logo {
+		display: block;
+		margin-left: calc((100% - 960px) / 2);
+		width: auto;
+		height: 40px;
+		padding-top: 15px;
+	}
+}
+
+.promotion-right {
+	display: none;
+    top: 8px;
+    position: absolute;
+    /* bottom: -5%; */
+    right: calc((100% - 1360px) / 2);
+}
+
+	
+.promotion-bottom {
+	    display: none;
+    bottom: 60px;
+    position: absolute;
+    margin-right: auto;
+    width: 410px;
+    height: auto;
+    position: absolute;
+    bottom: -94px;
+    left: 50%;
+    margin-left: -225px;
+	}
+	
+
+.promo-bottom-2 {
+	    /* display: block; */
+    /* margin-left: auto; */
+    margin-right: auto;
+    width: 276px;
+    height: auto;
+    position: absolute;
+    bottom: -78px;
+    left: 50%;
+    margin-left: -138px;
+}
+
+@media screen and (min-height: 775px) {
+
+	.play-at-home {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 324px;
+		height: auto;
+		position: absolute;
+		bottom: -5%;
+		left:50%;
+		margin-left: -164px
+	}
+}
+
+@media screen and (min-height: 815px) {
+	.webgl-logo {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: auto;
+		height: 80px;
+		padding-top: 15px;
+	}
+
+}
+
+@media screen and (min-height: 850px) {
+	.webgl-logo {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: auto;
+		max-height: 110px;
+		height: calc(79% - 600px);
+		padding-top: 30px;
+	}
+
+	.play-at-home {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 300px;
+		height: auto;
+		position: absolute;
+		bottom: 0%;
+		left:50%;
+		margin-left: -150px
+	}
+}
+
+@media screen and (min-height: 925px) {
+	.play-at-home {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 400px;
+		height: auto;
+		position: absolute;
+		bottom: 0%;
+		left:50%;
+		margin-left: -200px
+	}
+}
+
+
+
+.webgl-content .footer .title {
+	margin-right: 10px;
+	float: right;
+}
+.webgl-content .footer .fullscreen {
+	background-image: url('fullscreen.png');
+	width: 38px;
+	float: right;
+	background-size: contain;
+}
+
+#unityContainer {
+	background-image: url('sp_bg_loadingscreen.png') !important;
+	background-size: cover !important;
+}
+
+/* Mobile Content */
+.mobile-content {
+	display: none;
+}
+
+html.mobile,
+html.mobile body,
+.mobile-content {
+	height: 100%;
+}
+
+html.mobile body {
+	background: url(https://squigglepark-uploads-wp.s3.amazonaws.com/uploads/uploads/2018/10/purple_background-01-1024x576.jpg);
+	background-size: cover;
+	color: #fff;
+	margin: 0;
+	padding: 0;
+}
+
+.dreamscape-logo {
+	margin: 10px 0;
+	max-width: 100%;
+	width: 220px;
+}
+
+html.mobile .webgl-content {
+	display: none;
+}
+
+html.mobile .mobile-content {
+	align-items: center;
+	display: flex;
+	font-family: Arial, Helvetica, sans-serif;
+	justify-content: center;
+	padding: 0 10px;
+	text-align: center;
+}
+
+.mobile-content__header {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background: #fff;
+}
+
+.mobile-content__download a {
+	display: block;
+	margin-bottom: 30px;
+}
+
+.mobile-content__download a img {
+	width: 200px;
+}
+
+.mobile-content h1 {
+	margin: 0 0 30px;
+}
+
+.mobile-content h2 {
+	margin: 40px 0;
+}
