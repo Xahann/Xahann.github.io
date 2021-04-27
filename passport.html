@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Newgrounds Passport</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=500, initial-scale=1">
+						<script src="ajax/libs/jquery/1-8-2/jquery.min.js"></script>
+			<script>
+			// <![CDATA[
+								if (!window.jQuery) {
+					document.write('<script src="jquery/jquery.js" type="text/javascript"><\/script>');
+				}
+				document.domain = "newgrounds.com";
+			// ]]>
+			</script>
+													<script src="jquery/jquery_extensions.js"></script>							<script src="ng.js"></script>							<script src="swappablehtml.js"></script>					
+													<script src="recaptcha/api.js"></script>					
+		<link rel="stylesheet" href="passport.css" type="text/css" />	</head>
+		<body class='PassportBackgroundImage'>
+		<div class="PassportLogo">
+					</div>
+		<div id="passport_main">
+	<div class="box-shadow" style="border-radius: 10px; max-width: 400px; margin-left: auto; margin-right: auto;"><div class="PassportHead">
+	<h2>Sign In</h2>
+</div>
+<div class="PassportPodBody">
+		<div class="PassportError" id="passport_errors" style="display:none"></div>
+	<div class="PassportError" id="passport_message" style="display:none"></div>
+	<form action="index.html" method="post" id="login_form60886a62e85d3">
+	<input type="hidden" name="remember" id="newgrounds_remember" value="">
+	<div id="login_form60886a62e85d3_credentials">
+		<div>
+			<input placeholder="Username or Email" type="text" name="username" class="PassportTextfield"
+								autocomplete="username" required
+			>
+		</div>
+		<div>
+			<input placeholder="Password" type="password" name="password" class="PassportTextfield" maxlength="50" autocomplete="current-password" required>
+		</div>
+	</div>
+	<div id="login_form60886a62e85d3_mfa" style="display: none">
+		<div>
+			<input type="text" name="code" placeholder="Authentication Code" class="PassportTextfield" maxlength="10" autocomplete="off" required disabled>
+		</div>
+	</div>
+	<div>
+		<button type="submit" name="login" value="1" class="PassportLoginBtn" disabled>
+							Sign in with <strong>Newgrounds</strong>
+					</button>
+	</div>
+</form>
+<script>
+(($) => {
+	let $form = $('#login_form60886a62e85d3');
+	let $sbt = $('button', $form);
+	let $credentials = $('#login_form60886a62e85d3_credentials');
+	let $mfa = $('#login_form60886a62e85d3_mfa');
+	//let $auth = $('input');
+	let credentialsFilled = function() {
+		return $('input[type="text"], input[type="password"]', $credentials).filter(function() {
+			return this.value.length > 0;
+		}).size() === 2;
+	};
+	let enableBtn = () => {
+		$sbt.enable();
+	};
+	let disableBtn = () => {
+		$sbt.disable();
+	};
+	let checkBtn = () => {
+		let shouldEnable = () => {
+			if ($mfa.is(':visible')) {
+				return $('input', $mfa).val().length >= 6;
+			} else {
+				return credentialsFilled();
+			}
+		};
+		if (shouldEnable()) {
+			enableBtn();
+		} else {
+			disableBtn();
+		}
+	};
+	$(document).ready(() => {
+		$sbt.enable();
+	});
+	let checkMfa = function(e) {
+		if (!credentialsFilled()) {
+			return false;
+		}
+		if ($mfa.is(':visible')) {
+			return true;
+		}
+		let data = $form.serializeArray();
+		data.push({
+			name: 'mfaCheck',
+			value: 1
+		});
+		$.post($form.attr('action'), data, function(response) {
+			if (response && response.requiresMfa) {
+				$sbt.disable();
+				$credentials.slideUp('fast', () => {
+					$mfa.slideDown('fast', () => {
+						$('input', $mfa).enable();
+						$('input', $mfa).on('keypress keydown keyup', checkBtn);
+						// iOS doesn't detect the paste immediately
+						$('input', $mfa).on('paste', function() {
+							setTimeout(checkBtn, 100);
+						});
+					});
+				})
+			} else {
+				$form.submit();
+			}
+		}).fail(enableBtn);
+		return false;
+	};
+	$('input[type="text"], input[type="password"]', $credentials).on('keypress keydown paste', (e) => {
+		if (13 === e.which) {
+			return checkMfa();
+		}
+	});
+	$sbt.click(checkMfa);
+	$form.submit(function() {
+		let $username = $('[name="username"]', $form);
+		var v = $username.val();
+		if (v.length) {
+			v = v.replace(/\s+/, '');
+			if (v !== $username.val()) {
+				$username.val(v);
+			}
+		}
+		if (!$username.val().length) {
+			alert("Please enter your username.");
+			return false;
+		}
+		if (!$('[name="password"]', $form).val().length) {
+			alert("Please enter your password.");
+			return false;
+		}
+		return true;
+	});
+})(jQuery);
+</script>
+	<p>&mdash; Or &mdash;</p>
+	<p>
+	<button id="facebook_login_btn" class="PassportLoginFacebook">Sign in with Facebook</button><br/>
+	<button id="google_login_btn" class="GoogleLoginBtn">Sign in with Google</button>
+</p>
+<script type="text/javascript">
+//<![CDATA[
+	(function($) {
+		var loggedIn;
+		// click handler for facebook button
+		$('#facebook_login_btn').click(function() {
+			FB.login(facebookResponse, {scope: 'public_profile,email'});
+		});
+		// handles responses from facebook api
+		var facebookResponse = function(response) {
+			console.log(response);
+			if (response.status == 'connected') {
+				var token = encodeURIComponent(response.authResponse.accessToken);
+				var url = "/passport/appsession/56977842.05df6e26a68806928448677b9a3fb775c578fcb532cbc3/network/facebook/authtoken/"+token;
+				if ($('#remember_login').prop('checked')) url += "/remember/1";
+				var main = false;//$('#passport_main');
+				if (main) {
+					$.get(url, function(data) {
+						main.html(data);
+					});
+				} else {
+					window.location.href = url;
+				}
+			} else {
+				console.log('Facebook Sign-in state: '+response.status);
+			}
+		}
+		// initializes the facebook api
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId:	"201819236116",
+				xfbml:	true,
+				version:	"v2.11",
+				cookie: true
+			});
+		};
+		// loads the facebook api
+		(function(d, s, id){
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "en_us/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	})(jQuery);
+//]]>
+</script>
+<script src="js/api_client.js"></script>
+<script>
+  var googleUser = {};
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      auth2 = gapi.auth2.init({
+		apiKey: 'AIzaSyAZxw7faTvMYZrNVndJmpoMWi5ZXl10jAA',
+        client_id: '365522737681-pu3uelqs6kbco4a47u4okdv4a8qe5p55.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        // Request scopes in addition to 'profile' and 'email'
+        //scope: 'additional_scope'
+      });
+      attachSignin(document.getElementById('google_login_btn'));
+    });
+  };
+  function attachSignin(element) {
+    var $ = jQuery;
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+            var token = googleUser.getAuthResponse().id_token;
+			var url = "/passport/appsession/56977842.05df6e26a68806928448677b9a3fb775c578fcb532cbc3/network/google";
+			if ($('#remember_login').prop('checked')) url += "/remember/1";
+			url += "?authcode="+token+"&compare="+token;
+			var main = false;//$('#passport_main');
+			if (main) {
+				$.get(url, function(data) {
+					main.html(data);
+				});
+			} else {
+				window.location.href = url;
+			}
+        }, function(error) {
+          alert(JSON.stringify(error, undefined, 2));
+        }
+	);
+  }
+</script>
+<script>jQuery(function() { startApp(); })</script>
+	<p><input type="checkbox" id="remember_login" name="remember" checked="checked"> <label for="remember_login">Keep me signed in</label></p>
+	<script>
+	(($) => {
+		let remember_ng = $('#newgrounds_remember');
+		let remember = $('#remember_login');
+		let setLoginValue = function() {
+			remember_ng.val(remember.prop('checked') ? 1:'');
+		};
+		remember.click(setLoginValue);
+		setLoginValue();
+	})(jQuery);
+	</script>
+	<div class="PassportFootLinks">
+		<span class="leftLink">
+			<a href="index.html">Forgot your password?</a>
+		</span>
+		<span class="rightLink">
+			No account? <a href="index.html" class='noajax'>Sign Up</a>
+		</span>
+	</div>
+</div></div>
+</div>	</body>
+</html>
